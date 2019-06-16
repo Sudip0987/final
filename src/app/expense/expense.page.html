@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Add Item</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="expenseForm" style = "margin-left: 10px;margin-right:10px" >
+      <br>
+      <ion-grid>
+        <ion-row justify-content-center align-items-center>
+          
+          <ion-col>
+            <div class =  "start">
+                <ion-label sty>Amount</ion-label> 
+            </div>
+          </ion-col>
+          <ion-col>
+              <div class =  "center">
+                  <ion-input type="text" [(ngModel)]="amount" style= "border-radius:5px" placeholder="Item Name" color="dark" clear-input formControlName="expense"></ion-input>
+
+              </div>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center align-items-center>
+            <ion-col>
+              <div class =  "start">
+                  <ion-label sty>Description</ion-label> 
+              </div>
+            </ion-col>
+            <ion-col>
+                <div class =  "center">
+                    <ion-input type="text" [(ngModel)]="desc" style= "border-radius:5px" placeholder="Shop name" color="dark" clear-input formControlName="expense"></ion-input>
+  
+                </div>
+              </ion-col>
+          </ion-row>
+         
+        <ion-row justify-content-center align-items-center>
+            <ion-col>
+                <div class =  "start">
+                    
+                       
+                        <ion-button type="submit" color = "primary" expand="block" (click) = "addExpense(amount,desc)">
+                          Add Expense
+                        </ion-button>
+
+                </div>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+      <h3>   This Week</h3>
+      <ion-card>
+      <ion-grid>
+          <ion-row style = "margin:5px;font-size: 17px;">
+            <ion-col>
+              <div class = "start">
+                 <b>Amount</b>
+              </div>
+            </ion-col>
+            <ion-col>
+               <div class = "start">
+                  <b>Source</b>
+               </div>
+             </ion-col>
+             <ion-col>
+                 <div class = "start">
+                    <b>Date</b>
+                 </div>
+               </ion-col>
+          </ion-row>
+          
+        </ion-grid>
+        <div style = "border:1px solid lightgrey;margin-left:10px;margin-right: 10px"></div>
+        
+        <ion-list >
+
+          <ion-item-sliding>
+            <ion-card>
+           
+            <ion-grid>
+             
+                <ion-row justify-content-center align-items-center style = "font-size: 16px;" >
+                  
+                    <ion-col>
+                      <div class =  "start">
+                          <ion-label class = "center">
+                              400$
+                              </ion-label>
+      
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                        <div class =  "center">
+                            <ion-label class = "center">
+                                Maccas
+                                </ion-label>
+                        </div>
+                      </ion-col>
+                      <ion-col>
+                          <div class =  "end">
+                            <ion-label class = "center">12-07-2018</ion-label>
+                          </div>
+                        </ion-col>
+                  </ion-row>
+                </ion-grid>
+          </ion-card>
+            
+          </ion-item-sliding>
+        </ion-list>
+
+
+    </ion-card>
+   
+</ion-content>
