@@ -1,5 +1,7 @@
 {
   "name": "saveMyMoney",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

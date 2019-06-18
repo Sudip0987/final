@@ -21,6 +21,7 @@ import * as firebase from 'firebase';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
  firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -42,7 +43,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     StatusBar,
     SplashScreen,
     AuthenticateService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    LocalNotifications
+
   ],
   bootstrap: [AppComponent]
 })

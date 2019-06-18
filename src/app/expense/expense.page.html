@@ -30,8 +30,17 @@
               </div>
             </ion-col>
             <ion-col>
-                <div class =  "center">
-                    <ion-input type="text" [(ngModel)]="desc" style= "border-radius:5px" placeholder="Description" color="dark" clear-input formControlName="expense"></ion-input>
+                <div class =  "center" >
+                  <select [(ngModel)]="desc" formControlName="expense">
+                    <option>Rent</option>
+                    <option>Entertrainment</option>
+                    <option>Grocery</option>
+                    <option>Shopping</option>
+                    <option>Transportation</option>
+                    <option>Other</option>
+
+
+                  </select>
   
                 </div>
               </ion-col>
