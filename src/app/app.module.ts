@@ -19,10 +19,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
  
 import * as firebase from 'firebase';
 import { ReactiveFormsModule } from '@angular/forms';
- 
-firebase.initializeApp(environment.firebase);
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
- 
+ firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -31,6 +31,10 @@ firebase.initializeApp(environment.firebase);
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+
     ReactiveFormsModule
 
   ],

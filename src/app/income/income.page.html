@@ -12,13 +12,15 @@
         <ion-row justify-content-center align-items-center>
           
           <ion-col>
+            
             <div class =  "start">
                 <ion-label sty>Amount</ion-label> 
+                
             </div>
           </ion-col>
           <ion-col>
               <div class =  "center">
-                  <ion-input type="text" [(ngModel)]="amount" style= "border-radius:5px" placeholder="Item Name" color="dark" clear-input formControlName="income"></ion-input>
+                  <ion-input type="text" [(ngModel)]="amount" style= "border-radius:5px" placeholder="Amount" color="dark" clear-input formControlName="income"></ion-input>
 
               </div>
             </ion-col>
@@ -31,7 +33,7 @@
             </ion-col>
             <ion-col>
                 <div class =  "center">
-                    <ion-input type="text" [(ngModel)]="desc" style= "border-radius:5px" placeholder="Shop name" color="dark" clear-input formControlName="income"></ion-input>
+                    <ion-input type="text" [(ngModel)]="desc" style= "border-radius:5px" placeholder="Description" color="dark" clear-input formControlName="income"></ion-input>
   
                 </div>
               </ion-col>
@@ -77,8 +79,10 @@
         
         <ion-list >
 
-          <ion-item-sliding>
-            <ion-card>
+          <ion-item-sliding *ngFor="let item of Budgets">
+              <span *ngIf="item.Type=='Income'">
+
+            <ion-card >
            
             <ion-grid>
              
@@ -87,7 +91,7 @@
                     <ion-col>
                       <div class =  "start">
                           <ion-label class = "center">
-                              400$
+                              {{item.Amount}}$
                               </ion-label>
       
                       </div>
@@ -95,18 +99,19 @@
                     <ion-col>
                         <div class =  "center">
                             <ion-label class = "center">
-                                Maccas
+                                {{item.desc}}
                                 </ion-label>
                         </div>
                       </ion-col>
                       <ion-col>
                           <div class =  "end">
-                            <ion-label class = "center">12-07-2018</ion-label>
+                            <ion-label class = "center">{{item.Date1}}</ion-label>
                           </div>
                         </ion-col>
                   </ion-row>
                 </ion-grid>
           </ion-card>
+          </span>
             
           </ion-item-sliding>
         </ion-list>
