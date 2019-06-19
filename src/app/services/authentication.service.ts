@@ -16,6 +16,7 @@ export class AuthenticateService {
   }
 
   loginUser(value){
+    this.logoutUser();
    return new Promise<any>((resolve, reject) => {
      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
      .then(

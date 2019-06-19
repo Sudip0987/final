@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+ 
   public appPages = [
     {
       title: 'Budget Dashboard',
@@ -19,6 +20,10 @@ export class AppComponent {
       title: 'Payback',
       url: '/payback',
       icon: 'payback'
+    }, {
+      title: 'Log Out',
+      url: '/login',
+      icon: 'payback'
     }
   ];
 
@@ -27,6 +32,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
+
     this.initializeApp();
   }
 
