@@ -16,7 +16,6 @@ export interface dataArray{
 export class IncomePage {
   incomeForm:FormGroup;
 
-  title = 'Firestore CRUD Operations Students App';
   currentDate:string = new Date().toLocaleDateString();
 
   Budgets: any;

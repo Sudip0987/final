@@ -1,10 +1,10 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-title>Add Item</ion-title>
+        <ion-title>Payback</ion-title>
   
     </ion-toolbar>
   </ion-header>
-  
+ 
   <ion-content>
       <form [formGroup]="paybackForm" style = "margin-left: 10px;margin-right:10px" >
         <br>
@@ -35,9 +35,9 @@
                   <div class =  "center">
 
                       <select  [(ngModel)]="desc" style= "border-radius:5px"    formControlName="payback">
-                        <option>Lend</option>
+                        <option>Lent</option>
 
-                        <option selected="selected">Borrow</option>
+                        <option selected="selected">Borrowed</option>
                         Choose here
                       </select>
                   </div>
@@ -52,12 +52,26 @@
                 </ion-col>
                 <ion-col>
                     <div class =  "center">
-                        <ion-input type="text" [(ngModel)]="name" style= "border-radius:5px" placeholder="Name" color="dark" clear-input formControlName="payback"></ion-input>
+                        <ion-input type="text" [(ngModel)]="name" style= "border-radius:5\ç" placeholder="Name" color="dark" clear-input formControlName="payback"></ion-input>
       
                     </div>
                   </ion-col>
                 
               </ion-row>
+              <ion-row justify-content-center align-items-center>
+                  <ion-col>
+                    <div class =  "start">
+                        <ion-label sty>Notify in (days):</ion-label> 
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                      <div class =  "center">
+                          <ion-input type="text" [(ngModel)]="nDate" style= "border-radius:5px" placeholder="3" color="dark" clear-input formControlName="payback"></ion-input>
+                          
+                      </div>
+                    </ion-col>
+                  
+                </ion-row>
 
              
           <ion-row justify-content-center align-items-center>
@@ -65,7 +79,7 @@
                   <div class =  "start">
                       
                          
-                          <ion-button type="submit" color = "primary" expand="block" (click) = "addData(amount,desc,name)">
+                          <ion-button type="submit" color = "primary" expand="block" (click) = "addData(amount,desc,name,nDate)">
                             Add Record
                           </ion-button>
   
@@ -89,17 +103,13 @@
                 </ion-col>
               <ion-col>
                  <div class = "start">
-                    <b>Description</b>
+                    <b>Desc</b>
                  </div>
                </ion-col>
-               <ion-col>
-                   <div class = "start">
-                      <b>Date</b>
-                   </div>
-                 </ion-col>
+              
                  <ion-col>
                     <div class = "start">
-                       <b>Status</b>
+                       <b> Status</b>
                     </div>
                   </ion-col>
             </ion-row>
@@ -140,11 +150,7 @@
                                   </ion-label>
                           </div>
                         </ion-col>
-                        <ion-col>
-                            <div class =  "end">
-                              <ion-label class = "center">{{item.Date1}}</ion-label>
-                            </div>
-                          </ion-col>
+                      
                           <ion-col>
                               <span *ngIf="item.Date2=='Paid';else elseBlock">
                                   <div class =  "end">
@@ -157,7 +163,8 @@
                                       <div class =  "end">
                                           <ion-button type="submit" color = "primary"  (click) = "tickOffItem(item)">
                                               <h2>✓</h2>
-                                            </ion-button>                          
+                                            </ion-button>         
+                                                           
                                         </div>
                                    </ng-template>
                              

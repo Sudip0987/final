@@ -19,6 +19,7 @@ export class CrudService {
   readRecord() {
     return this.firestore.collection('Budgets').snapshotChanges();
   }
+  
 
   updateRecord(recordID,record){
     this.firestore.doc('Budgets/' + recordID).update(record);

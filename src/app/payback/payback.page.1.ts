@@ -92,23 +92,28 @@ export class PaybackPage implements OnInit {
     
       this.addNotification(nDate,desc,name,amount);
   }
+uopdateAll(){
+  for(let item in this.Budgets){
+    this.tickOffItem(item);
+  }
+}
+
   tickOffItem(item){
 
       let record = {};
       
-console.log(item.Amount+"/"+item.desc);
-console.log(item.Date1+"/"+item.Date2);
-console.log(item.Type+"/"+item.Name);
+
 
       record['amount'] = item.Amount;
       record['desc'] = item.desc;
       record['date1'] = item.Date1;
 
-      record['date2'] = "Paid";
+      record['date2'] = item.Date2;
 
 
       record['type'] = item.Type;
       record['name'] = item.Name;
+      record['user']= "sudip@gmail.com";
 
       this.crudService.updateRecord(item.id, record);
     }
@@ -116,7 +121,7 @@ console.log(item.Type+"/"+item.Name);
     addNotification(days:number,desc:string,name:string,amount:NumberSymbol){
       console.log(days);
       
-
+      
       if(desc=="Lent"){
         var message = name+" is supposed to pay you "+ amount +"$ today" ; 
       }else{

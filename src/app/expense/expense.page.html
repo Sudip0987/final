@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-title>Add Item</ion-title>
+      <ion-title>Expense</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -31,11 +31,9 @@
             </ion-col>
             <ion-col>
                 <div class =  "center" >
-                  <select [(ngModel)]="desc" formControlName="expense">
+                  <select [(ngModel)]="desc" placeholder="description" formControlName="expense">
                     <option>Rent</option>
-                    <option>Entertrainment</option>
                     <option>Grocery</option>
-                    <option>Shopping</option>
                     <option>Transportation</option>
                     <option>Other</option>
 
@@ -51,7 +49,7 @@
                 <div class =  "start">
                     
                        
-                        <ion-button type="submit" color = "primary" expand="block" (click) = "addExpense(amount,desc)">
+                        <ion-button type="submit" color = "primary"  expand="block" (click) = "addExpense(amount,desc)">
                           Add Expense
                         </ion-button>
 
@@ -60,7 +58,7 @@
           </ion-row>
         </ion-grid>
       </form>
-      <h3>   This Week</h3>
+      
       <ion-card>
       <ion-grid>
           <ion-row style = "margin:5px;font-size: 17px;">
@@ -71,7 +69,7 @@
             </ion-col>
             <ion-col>
                <div class = "start">
-                  <b>Source</b>
+                  <b>Used For</b>
                </div>
              </ion-col>
              <ion-col>
@@ -97,7 +95,7 @@
                     <ion-col>
                       <div class =  "start">
                           <ion-label class = "center">
-                              {{item.Amount}}
+                              {{item.Amount}}$
                               </ion-label>
       
                       </div>
