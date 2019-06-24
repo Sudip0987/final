@@ -36,6 +36,7 @@ const routes: Routes = [
   },
   { path: 'payback', loadChildren: './payback/payback.module#PaybackPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+  { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },
 ];
 
 @NgModule({
