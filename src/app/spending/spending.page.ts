@@ -1,3 +1,4 @@
+import { AuthenticateService } from './../services/authentication.service';
 import { Platform } from '@ionic/angular';
 import { AppModule } from './../app.module';
 import { CrudService } from './../services/crud.service';
@@ -18,16 +19,20 @@ export class SpendingPage implements OnInit {
   date2:string;
   name:string;
   type:string;
+  user:string;
   jsonData:string;
   allData:string;
 
+  userEmail:string="";
 
   constructor(
     private crudService:CrudService,
-    private  platform:Platform
+    private  platform:Platform,
+    private authService: AuthenticateService
     ) { }
 
   ngOnInit() {
+    this.userEmail = this.authService.userDetails().email;
     this.crudService.readRecord().subscribe(data => {
  
       this.Budgets = data.map(e => {
@@ -42,6 +47,7 @@ export class SpendingPage implements OnInit {
           Date2: e.payload.doc.data()['date2'],
           Name: e.payload.doc.data()['name'],
           Type: e.payload.doc.data()['type'],
+          User: e.payload.doc.data()['userEmail']
           
 
           
@@ -59,6 +65,7 @@ export class SpendingPage implements OnInit {
       
  
     });
+    
 
 
  
@@ -76,40 +83,41 @@ export class SpendingPage implements OnInit {
      
      var amount;
     for(let budget of this.Budgets){
-       this.amount = budget.Amount;
-       amount = this.amount;
-       this.date1 = budget.Date1;
-       this.desc = budget.desc;
-       this.type= budget.Type;
-     // console.log(this.desc);
-      // if(month==this.date1.substring(0,2)){
-      
-        if(this.type=="Income"){
-          totalIncome = totalIncome+parseInt(amount);
-        }else if(this.type=="Expense"){
-          totalExpense = totalExpense+parseInt(amount);
-        }
-         if(this.desc=="Rent"){
-          totalRent=totalRent+parseInt(amount);
-          console.log("check"+totalRent);
-         }
-         if(this.desc=="Transportation"){
-          totalTrans=totalTrans+parseInt(amount);
-          console.log("check"+totalTrans);
-         }
-
-         if(this.desc=="Grocery"){
-          totalGro=totalGro+parseInt(amount);
-          console.log("check"+totalGro);
-         }
-
-         if(this.desc=="Other"){
-          totalOther=totalOther+parseInt(amount);
-          console.log("check"+totalOther);
-         }
-
+      if(this.userEmail==budget.User){
+        this.amount = budget.Amount;
+        amount = this.amount;
+        this.date1 = budget.Date1;
+        this.desc = budget.desc;
+        this.type= budget.Type;
+      // console.log(this.desc);
+       // if(month==this.date1.substring(0,2)){
        
+         if(this.type=="Income"){
+           totalIncome = totalIncome+parseInt(amount);
+         }else if(this.type=="Expense"){
+           totalExpense = totalExpense+parseInt(amount);
+         }
+          if(this.desc=="Rent"){
+           totalRent=totalRent+parseInt(amount);
+           console.log("check"+totalRent);
+          }
+          if(this.desc=="Transportation"){
+           totalTrans=totalTrans+parseInt(amount);
+           console.log("check"+totalTrans);
+          }
+ 
+          if(this.desc=="Grocery"){
+           totalGro=totalGro+parseInt(amount);
+           console.log("check"+totalGro);
+          }
+ 
+          if(this.desc=="Other"){
+           totalOther=totalOther+parseInt(amount);
+           console.log("check"+totalOther);
+          }
+ 
         
+               }
        //}
      //  console.log(this.totalRent+"--"+this.totalGro+"--"+this.totalTrans+"--"+this.totalOther);
 
