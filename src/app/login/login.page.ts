@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
  
   validations_form: FormGroup;
   errorMessage: string = '';
-
+  userEmail:string='';
   constructor(
 
     private navCtrl: NavController,
@@ -59,10 +59,14 @@ export class LoginPage implements OnInit {
     }, err => {
       this.errorMessage = err.message;
     })
+    this.userEmail = value.email;
   }
 
   goToRegisterPage(){
     this.navCtrl.navigateForward('/register');
   }
 
+    getUserEmail(){
+      return this.userEmail;
+    }
 }

@@ -1,3 +1,5 @@
+import { AuthenticateService } from './../services/authentication.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { CrudService } from './../services/crud.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,11 +24,13 @@ export class PaybackPage implements OnInit {
   date2:string;
   name:string;
   type:string;
+  userEmail:string;
   constructor(
     private formBuilder:FormBuilder,
     private localNotify: LocalNotifications,
     private crudService: CrudService,
-    
+    private afAuth:AngularFireAuth,
+    private authService: AuthenticateService
   ) { }
 
   ngOnInit() {
@@ -47,8 +51,8 @@ export class PaybackPage implements OnInit {
           Date2: e.payload.doc.data()['date2'],
           Name: e.payload.doc.data()['name'],
           Type: e.payload.doc.data()['type'],
-
-
+          User: e.payload.doc.data()['userEmail'],
+          
           
           
         };
@@ -58,9 +62,12 @@ export class PaybackPage implements OnInit {
       
  
     });
+    this.userEmail= this.authService.userDetails().email;
+
   }
   addData(amount:number,desc:string,name:string,nDate:number){
-   
+   this.afAuth.authState.subscribe(user => {
+    if(user){
 
     this.amount = amount;
     this.desc = desc;
@@ -68,6 +75,8 @@ export class PaybackPage implements OnInit {
     this.date2="dsdd";
     this.type="Payback";
     this.name=name;
+    this.userEmail = user.email;
+
       let record = {};
       record['amount'] = this.amount;
       record['desc'] = this.desc;
@@ -76,6 +85,7 @@ export class PaybackPage implements OnInit {
       record['type'] = this.type;
 
       record['name'] = this.name;
+      record['userEmail'] = this.userEmail;
 
       this.crudService.addRecord(record).then(resp => {
         this.amount = amount;
@@ -84,6 +94,8 @@ export class PaybackPage implements OnInit {
     this.date2="dsdd";
     this.type="Payback";
     this.name=name;
+    this.userEmail = user.email;
+
         console.log(resp);
       })
         .catch(error => {
@@ -91,6 +103,9 @@ export class PaybackPage implements OnInit {
         });
     
       this.addNotification(nDate,desc,name,amount);
+    }
+   });
+    
   }
   tickOffItem(item){
 
@@ -109,6 +124,7 @@ console.log(item.Type+"/"+item.Name);
 
       record['type'] = item.Type;
       record['name'] = item.Name;
+      record['user'] = item.User;
 
       this.crudService.updateRecord(item.id, record);
     }
